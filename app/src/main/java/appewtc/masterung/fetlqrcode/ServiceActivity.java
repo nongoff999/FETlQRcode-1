@@ -1,8 +1,11 @@
 package appewtc.masterung.fetlqrcode;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,9 +48,9 @@ public class ServiceActivity extends AppCompatActivity {
 
             JSONArray jsonArray = new JSONArray(strJSON);
             int i = jsonArray.length();
-            String[] iconString = new String[i];
-            String[] titlesString = new String[i];
-            String[] detailString = new String[i];
+            final String[] iconString = new String[i];
+            final String[] titlesString = new String[i];
+            final String[] detailString = new String[i];
 
             for (int i1=0;i1<i;i1++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i1);
@@ -59,6 +62,18 @@ public class ServiceActivity extends AppCompatActivity {
 
             MyAdapter myAdapter = new MyAdapter(this, iconString, titlesString, detailString);
             listView.setAdapter(myAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(ServiceActivity.this, DetailActivity.class);
+                    intent.putExtra("Name", titlesString[position]);
+                    intent.putExtra("Detail", detailString[position]);
+                    intent.putExtra("Icon", iconString[position]);
+                    startActivity(intent);
+
+                }
+            });
 
         } catch (Exception e) {
             Log.d("18MayV1", "e createLisView ==>" + e.toString());
