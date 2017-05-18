@@ -7,7 +7,7 @@
     <string name="name">Name :</string>
 
     <string name="title_HaveSpace">มีช่องว่าง</string>
-    <string name="massage_HaveSpace">กรุณากรอกทุกช่อง คะ</string>
+    <string name="massage_HaveSpace">กรุณากรอกทุกช่อง ครับ</string>
     <string name="title_UserFalse">User False</string>
     <string name="message_UserFalse">No This User in my Database</string>
     <string name="title_PasswordFalse">Password False</string>
